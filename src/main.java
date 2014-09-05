@@ -77,6 +77,11 @@ public class main extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        confirm = new javax.swing.JOptionPane();
+        logs_frame = new javax.swing.JFrame();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        logs = new javax.swing.JTextArea();
         title_lbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         choose_btn = new javax.swing.JButton();
@@ -110,10 +115,17 @@ public class main extends javax.swing.JFrame {
         auth_btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         file_list = new javax.swing.JTable();
+        share_all_btn = new javax.swing.JButton();
+        clear_all_btn = new javax.swing.JButton();
         main_menu = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
+        auth_item = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
         exit_item = new javax.swing.JMenuItem();
         menu_about = new javax.swing.JMenu();
+        logs_item = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        about_item = new javax.swing.JMenuItem();
 
         auth.setTitle("Authentication");
         auth.setModal(true);
@@ -287,6 +299,40 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("LOGS");
+
+        logs.setColumns(20);
+        logs.setLineWrap(true);
+        logs.setRows(5);
+        logs.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(logs);
+
+        javax.swing.GroupLayout logs_frameLayout = new javax.swing.GroupLayout(logs_frame.getContentPane());
+        logs_frame.getContentPane().setLayout(logs_frameLayout);
+        logs_frameLayout.setHorizontalGroup(
+            logs_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logs_frameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(logs_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(logs_frameLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logs_frameLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(165, 165, 165))))
+        );
+        logs_frameLayout.setVerticalGroup(
+            logs_frameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logs_frameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("DC AutoShare");
         setResizable(false);
@@ -296,7 +342,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        title_lbl.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        title_lbl.setFont(new java.awt.Font("Dialog", 1, 24));
         title_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title_lbl.setText("DC Hub AutoShare");
 
@@ -345,7 +391,7 @@ public class main extends javax.swing.JFrame {
 
         files_found_lbl.setText("Files Found:");
 
-        files_counter.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        files_counter.setFont(new java.awt.Font("Dialog", 1, 12));
         files_counter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         files_counter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -485,7 +531,31 @@ public class main extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(file_list);
 
+        share_all_btn.setText("SHARE ALL");
+        share_all_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                share_all_btnMouseClicked(evt);
+            }
+        });
+
+        clear_all_btn.setText("CLEAR ALL");
+        clear_all_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clear_all_btnMouseClicked(evt);
+            }
+        });
+
         menu_file.setText("File");
+
+        auth_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
+        auth_item.setText("Authenticate");
+        auth_item.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                auth_itemMouseClicked(evt);
+            }
+        });
+        menu_file.add(auth_item);
+        menu_file.add(jSeparator5);
 
         exit_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         exit_item.setText("Exit");
@@ -498,12 +568,26 @@ public class main extends javax.swing.JFrame {
 
         main_menu.add(menu_file);
 
-        menu_about.setText("About");
-        menu_about.addMouseListener(new java.awt.event.MouseAdapter() {
+        menu_about.setText("Help");
+
+        logs_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
+        logs_item.setText("Logs");
+        logs_item.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_aboutMouseClicked(evt);
+                logs_itemMouseClicked(evt);
             }
         });
+        menu_about.add(logs_item);
+        menu_about.add(jSeparator6);
+
+        about_item.setText("About");
+        about_item.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                about_itemMouseClicked(evt);
+            }
+        });
+        menu_about.add(about_item);
+
         main_menu.add(menu_about);
 
         setJMenuBar(main_menu);
@@ -525,34 +609,10 @@ public class main extends javax.swing.JFrame {
                         .addComponent(clear_btn))
                     .addComponent(folder_display, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(date_modified_lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(DD_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                    .addComponent(DD_set, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MM_set, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MM_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(YY_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(YY_set, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(files_found_lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(files_counter, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tags_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(update_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(179, Short.MAX_VALUE)
@@ -566,11 +626,41 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(update_btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(date_modified_lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(DD_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                            .addComponent(DD_set, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MM_set, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MM_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(YY_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(YY_set, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(files_found_lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(files_counter, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(share_all_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(clear_all_btn)))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {choose_btn, clear_btn});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {DD_set, MM_set});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {clear_all_btn, share_all_btn});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,7 +696,10 @@ public class main extends javax.swing.JFrame {
                         .addComponent(files_counter, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(update_btn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(update_btn)
+                    .addComponent(share_all_btn)
+                    .addComponent(clear_all_btn))
                 .addGap(18, 18, 18)
                 .addComponent(tags_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -645,7 +738,7 @@ public class main extends javax.swing.JFrame {
         if (update_date == true) {
             Calendar today = Calendar.getInstance();
             int YY = today.get(Calendar.YEAR);
-            int MM = today.get(Calendar.MONTH);
+            int MM = today.get(Calendar.MONTH) + 1;
             int DD = today.get(Calendar.DATE);
             YY_set.setText("" + YY);
             MM_set.setText("" + MM);
@@ -758,12 +851,24 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_reset_btnMouseClicked
 
     private void share_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_share_btnMouseClicked
-        try {
-            createModel();
-
-            error.showMessageDialog(this, "Done Sharing", "Finished", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e) {
-            error.showMessageDialog(this, "Error" + e, "Error", JOptionPane.ERROR_MESSAGE);
+        int n = confirm.showConfirmDialog(this, "Are you sure?", "Confirm Share", JOptionPane.YES_NO_OPTION);
+        if (n == JOptionPane.YES_OPTION) {
+            try {
+                createModel();
+                int rows = model.getRowCount();
+                for (int i = 0; i < rows; i++) {
+                    String movie_name = (String) model.getValueAt(i, 0);
+                    boolean to_share = (Boolean) model.getValueAt(i, 2);
+                    if (to_share) {
+                        autoshare(username, password, movie_name);
+                    }
+                }
+                error.showMessageDialog(this, "Done Sharing", "Finished", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                error.showMessageDialog(this, "Error" + e, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            confirm.setEnabled(false);
         }
     }//GEN-LAST:event_share_btnMouseClicked
 
@@ -777,11 +882,37 @@ public class main extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exit_itemMouseClicked
 
-    private void menu_aboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_aboutMouseClicked
+    private void auth_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_auth_itemMouseClicked
+        auth_btn.doClick();
+    }//GEN-LAST:event_auth_itemMouseClicked
+
+    private void share_all_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_share_all_btnMouseClicked
+        createModel();
+        int rows = model.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            boolean share_yes = true;
+            model.setValueAt(share_yes, i, 2);
+        }
+    }//GEN-LAST:event_share_all_btnMouseClicked
+
+    private void clear_all_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clear_all_btnMouseClicked
+        createModel();
+        int rows = model.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            boolean share_no = false;
+            model.setValueAt(share_no, i, 2);
+        }
+    }//GEN-LAST:event_clear_all_btnMouseClicked
+
+    private void about_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_about_itemMouseClicked
         Dimension size_of_about = new Dimension(240, 400);
         about.setMinimumSize(size_of_about);
         about.setVisible(true);
-    }//GEN-LAST:event_menu_aboutMouseClicked
+    }//GEN-LAST:event_about_itemMouseClicked
+
+    private void logs_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logs_itemMouseClicked
+        logs_frame.setVisible(true);
+    }//GEN-LAST:event_logs_itemMouseClicked
 
     public void createModel() {
         model = (DefaultTableModel) file_list.getModel();
@@ -860,14 +991,18 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel YY_lbl;
     private javax.swing.JTextField YY_set;
     private javax.swing.JDialog about;
+    private javax.swing.JMenuItem about_item;
     private javax.swing.JCheckBox anime_check;
     private javax.swing.JCheckBox apps_check;
     private javax.swing.JDialog auth;
     private javax.swing.JButton auth_btn;
+    private javax.swing.JMenuItem auth_item;
     private javax.swing.JLabel auth_lbl;
     private javax.swing.JCheckBox books_check;
     private javax.swing.JButton choose_btn;
+    private javax.swing.JButton clear_all_btn;
     private javax.swing.JButton clear_btn;
+    private javax.swing.JOptionPane confirm;
     private javax.swing.JCheckBox courses_check;
     private javax.swing.JLabel date_modified_lbl;
     private javax.swing.JOptionPane error;
@@ -886,14 +1021,21 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton login_btn;
+    private javax.swing.JTextArea logs;
+    private javax.swing.JFrame logs_frame;
+    private javax.swing.JMenuItem logs_item;
     private javax.swing.JMenuBar main_menu;
     private javax.swing.JMenu menu_about;
     private javax.swing.JMenu menu_file;
@@ -903,6 +1045,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JTextField nick_input;
     private javax.swing.JPasswordField pass_input;
     private javax.swing.JButton reset_btn;
+    private javax.swing.JButton share_all_btn;
     private javax.swing.JButton share_btn;
     private javax.swing.JCheckBox software_check;
     private javax.swing.JPanel tags_panel;
