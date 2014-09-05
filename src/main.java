@@ -29,7 +29,7 @@ import org.jsoup.nodes.Document;
  * @author Kanishka
  */
 public class main extends javax.swing.JFrame {
-
+    
     final JFileChooser folder_chooser = new JFileChooser();
     File chosen_file = null;
     Date files_after = null;
@@ -232,7 +232,7 @@ public class main extends javax.swing.JFrame {
         jLabel5.setText(" Kanishka Ganguly");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Special Thanks To");
+        jLabel6.setText("Backend Designed By");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 12));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -299,7 +299,7 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("LOGS");
 
@@ -549,9 +549,9 @@ public class main extends javax.swing.JFrame {
 
         auth_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK));
         auth_item.setText("Authenticate");
-        auth_item.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                auth_itemMouseClicked(evt);
+        auth_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auth_itemActionPerformed(evt);
             }
         });
         menu_file.add(auth_item);
@@ -559,9 +559,9 @@ public class main extends javax.swing.JFrame {
 
         exit_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         exit_item.setText("Exit");
-        exit_item.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exit_itemMouseClicked(evt);
+        exit_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exit_itemActionPerformed(evt);
             }
         });
         menu_file.add(exit_item);
@@ -572,18 +572,18 @@ public class main extends javax.swing.JFrame {
 
         logs_item.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
         logs_item.setText("Logs");
-        logs_item.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logs_itemMouseClicked(evt);
+        logs_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logs_itemActionPerformed(evt);
             }
         });
         menu_about.add(logs_item);
         menu_about.add(jSeparator6);
 
         about_item.setText("About");
-        about_item.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                about_itemMouseClicked(evt);
+        about_item.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                about_itemActionPerformed(evt);
             }
         });
         menu_about.add(about_item);
@@ -733,7 +733,7 @@ public class main extends javax.swing.JFrame {
         YY_set.setEnabled(true);
         update_btn.setEnabled(true);
     }//GEN-LAST:event_choose_btnMouseClicked
-
+    
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         if (update_date == true) {
             Calendar today = Calendar.getInstance();
@@ -757,21 +757,21 @@ public class main extends javax.swing.JFrame {
             share_btn.setEnabled(false);
         }
     }//GEN-LAST:event_formWindowActivated
-
+    
     private void clear_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clear_btnMouseClicked
         folder_display.setText("");
         chosen_file = null;
         clearTable();
         files_counter.setText("");
     }//GEN-LAST:event_clear_btnMouseClicked
-
+    
     private void update_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_btnMouseClicked
         update_date = false;
         tags_disabled = false;
         update_tags.setEnabled(true);
         createModel();
         clearTable();
-
+        
         int files_found = 0;
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -793,7 +793,7 @@ public class main extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_update_btnMouseClicked
-
+    
     private void update_tagsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_tagsMouseClicked
         if (videos_check.isSelected()) {
             tags.put("data[tag]", "video");
@@ -829,7 +829,7 @@ public class main extends javax.swing.JFrame {
             tags.put("data[software]", "software");
         }
     }//GEN-LAST:event_update_tagsMouseClicked
-
+    
     private void login_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_btnMouseClicked
         username = nick_input.getText();
         password = pass_input.getText();
@@ -842,14 +842,14 @@ public class main extends javax.swing.JFrame {
             auth.dispose();
         }
     }//GEN-LAST:event_login_btnMouseClicked
-
+    
     private void reset_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reset_btnMouseClicked
         username = null;
         password = null;
         nick_input.setText("");
         pass_input.setText("");
     }//GEN-LAST:event_reset_btnMouseClicked
-
+    
     private void share_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_share_btnMouseClicked
         int n = confirm.showConfirmDialog(this, "Are you sure?", "Confirm Share", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
@@ -871,21 +871,13 @@ public class main extends javax.swing.JFrame {
             confirm.setEnabled(false);
         }
     }//GEN-LAST:event_share_btnMouseClicked
-
+    
     private void auth_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_auth_btnMouseClicked
         Dimension size_of_auth = new Dimension(220, 320);
         auth.setMinimumSize(size_of_auth);
         auth.setVisible(true);
     }//GEN-LAST:event_auth_btnMouseClicked
-
-    private void exit_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_itemMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_exit_itemMouseClicked
-
-    private void auth_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_auth_itemMouseClicked
-        auth_btn.doClick();
-    }//GEN-LAST:event_auth_itemMouseClicked
-
+    
     private void share_all_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_share_all_btnMouseClicked
         createModel();
         int rows = model.getRowCount();
@@ -894,7 +886,7 @@ public class main extends javax.swing.JFrame {
             model.setValueAt(share_yes, i, 2);
         }
     }//GEN-LAST:event_share_all_btnMouseClicked
-
+    
     private void clear_all_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clear_all_btnMouseClicked
         createModel();
         int rows = model.getRowCount();
@@ -903,21 +895,35 @@ public class main extends javax.swing.JFrame {
             model.setValueAt(share_no, i, 2);
         }
     }//GEN-LAST:event_clear_all_btnMouseClicked
-
-    private void about_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_about_itemMouseClicked
+    
+    private void logs_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logs_itemActionPerformed
+        logs_frame.setResizable(false);
+        logs_frame.setTitle("Logs");
+        Dimension size_of_logs = new Dimension(400, 400);
+        logs_frame.setMinimumSize(size_of_logs);
+        logs_frame.setVisible(true);
+    }//GEN-LAST:event_logs_itemActionPerformed
+    
+    private void auth_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auth_itemActionPerformed
+        Dimension size_of_auth = new Dimension(220, 320);
+        auth.setMinimumSize(size_of_auth);
+        auth.setVisible(true);
+    }//GEN-LAST:event_auth_itemActionPerformed
+    
+    private void about_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_about_itemActionPerformed
         Dimension size_of_about = new Dimension(240, 400);
         about.setMinimumSize(size_of_about);
         about.setVisible(true);
-    }//GEN-LAST:event_about_itemMouseClicked
-
-    private void logs_itemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logs_itemMouseClicked
-        logs_frame.setVisible(true);
-    }//GEN-LAST:event_logs_itemMouseClicked
-
+    }//GEN-LAST:event_about_itemActionPerformed
+    
+    private void exit_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exit_itemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exit_itemActionPerformed
+    
     public void createModel() {
         model = (DefaultTableModel) file_list.getModel();
     }
-
+    
     public void clearTable() {
         int rows = model.getRowCount();
         if (rows > 0) {
@@ -926,7 +932,7 @@ public class main extends javax.swing.JFrame {
             }
         }
     }
-
+    
     public static void autoshare(String username, String password, String title) {
         tags.put("data[title]", title);
         tags.put("share", "Share");
@@ -977,7 +983,7 @@ public class main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            
             public void run() {
                 new main().setVisible(true);
             }
