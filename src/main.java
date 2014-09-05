@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
@@ -38,6 +39,7 @@ public class main extends javax.swing.JFrame {
     boolean share_disabled = true;
     public String username = null;
     public String password = null;
+    public DefaultTableModel model = null;
     public static Map<String, String> tags = new HashMap<String, String>();
 
     /** Creates new form main */
@@ -81,8 +83,6 @@ public class main extends javax.swing.JFrame {
         folder_chosen_lbl = new javax.swing.JLabel();
         folder_display = new javax.swing.JLabel();
         clear_btn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        file_list = new javax.swing.JTextArea();
         date_modified_lbl = new javax.swing.JLabel();
         DD_set = new javax.swing.JTextField();
         DD_lbl = new javax.swing.JLabel();
@@ -108,6 +108,8 @@ public class main extends javax.swing.JFrame {
         update_tags = new javax.swing.JButton();
         share_btn = new javax.swing.JButton();
         auth_btn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        file_list = new javax.swing.JTable();
         main_menu = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
         exit_item = new javax.swing.JMenuItem();
@@ -207,20 +209,20 @@ public class main extends javax.swing.JFrame {
         about.setTitle("About");
         about.setResizable(false);
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24));
         jLabel3.setText("DC Hub AutoShare");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Conceived and Designed By");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText(" Kanishka Ganguly");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Special Thanks To");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 12));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Koushik MLN");
 
@@ -294,7 +296,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        title_lbl.setFont(new java.awt.Font("Dialog", 1, 24));
+        title_lbl.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         title_lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title_lbl.setText("DC Hub AutoShare");
 
@@ -316,10 +318,6 @@ public class main extends javax.swing.JFrame {
                 clear_btnMouseClicked(evt);
             }
         });
-
-        file_list.setColumns(20);
-        file_list.setRows(5);
-        jScrollPane1.setViewportView(file_list);
 
         date_modified_lbl.setText("Show Files After:");
 
@@ -347,7 +345,7 @@ public class main extends javax.swing.JFrame {
 
         files_found_lbl.setText("Files Found:");
 
-        files_counter.setFont(new java.awt.Font("Dialog", 1, 12));
+        files_counter.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         files_counter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         files_counter.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -392,26 +390,22 @@ public class main extends javax.swing.JFrame {
                     .addComponent(movie_check)
                     .addComponent(tv_check)
                     .addComponent(books_check))
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tags_panelLayout.createSequentialGroup()
-                        .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(games_check)
-                            .addComponent(anime_check))
-                        .addGap(18, 18, 18)
-                        .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(software_check)
-                            .addComponent(videos_check)))
-                    .addGroup(tags_panelLayout.createSequentialGroup()
-                        .addComponent(music_check)
-                        .addGap(18, 18, 18)
-                        .addComponent(courses_check, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(games_check)
+                    .addComponent(anime_check)
+                    .addComponent(music_check))
+                .addGap(48, 48, 48)
+                .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(software_check)
+                    .addComponent(videos_check)
+                    .addComponent(courses_check, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(misc_check)
                     .addComponent(apps_check)
                     .addComponent(update_tags))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tags_panelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {anime_check, books_check, games_check, movie_check, music_check, software_check, tv_check, videos_check});
@@ -420,25 +414,35 @@ public class main extends javax.swing.JFrame {
 
         tags_panelLayout.setVerticalGroup(
             tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tags_panelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tags_panelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(movie_check)
-                    .addComponent(games_check)
-                    .addComponent(software_check)
-                    .addComponent(apps_check))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tv_check)
-                    .addComponent(anime_check)
-                    .addComponent(videos_check)
-                    .addComponent(misc_check))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(books_check)
-                    .addComponent(music_check)
-                    .addComponent(courses_check)
-                    .addComponent(update_tags)))
+                .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tags_panelLayout.createSequentialGroup()
+                        .addComponent(games_check)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(anime_check)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(music_check))
+                    .addGroup(tags_panelLayout.createSequentialGroup()
+                        .addComponent(apps_check)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(misc_check)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(update_tags))
+                    .addGroup(tags_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(tags_panelLayout.createSequentialGroup()
+                            .addComponent(software_check)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(videos_check)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(courses_check))
+                        .addGroup(tags_panelLayout.createSequentialGroup()
+                            .addComponent(movie_check)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tv_check)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(books_check))))
+                .addContainerGap())
         );
 
         share_btn.setText("SHARE NOW");
@@ -454,6 +458,32 @@ public class main extends javax.swing.JFrame {
                 auth_btnMouseClicked(evt);
             }
         });
+
+        file_list.setAutoCreateRowSorter(true);
+        file_list.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "File Name", "Date Modified", "Share"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(file_list);
 
         menu_file.setText("File");
 
@@ -489,54 +519,53 @@ public class main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(choose_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                        .addGap(52, 52, 52)
+                        .addComponent(auth_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addComponent(clear_btn))
-                    .addComponent(folder_display, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addComponent(folder_display, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(date_modified_lbl)
-                    .addComponent(files_found_lbl))
+                .addComponent(date_modified_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(DD_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DD_set, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MM_set, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MM_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(YY_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(YY_set, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(files_counter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(auth_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(266, 266, 266)
-                .addComponent(update_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(title_lbl)
-                .addGap(103, 103, 103))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DD_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(DD_set, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(share_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
+                    .addComponent(MM_set, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(MM_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(YY_lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(YY_set, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(files_found_lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(files_counter, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tags_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tags_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                .addComponent(update_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(179, Short.MAX_VALUE)
+                .addComponent(title_lbl)
+                .addGap(161, 161, 161))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(share_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {choose_btn, clear_btn});
@@ -556,31 +585,35 @@ public class main extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(choose_btn)
-                    .addComponent(clear_btn))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(date_modified_lbl)
-                    .addComponent(DD_set, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MM_set, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(YY_set, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(update_btn))
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DD_lbl)
-                    .addComponent(MM_lbl)
-                    .addComponent(YY_lbl))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(files_found_lbl)
-                    .addComponent(files_counter, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clear_btn)
                     .addComponent(auth_btn))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(date_modified_lbl)
+                            .addComponent(DD_set, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MM_set, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(YY_set, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(files_found_lbl))
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DD_lbl)
+                            .addComponent(MM_lbl)
+                            .addComponent(YY_lbl))
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(files_counter, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(update_btn)
                 .addGap(18, 18, 18)
                 .addComponent(tags_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(share_btn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -609,7 +642,6 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_choose_btnMouseClicked
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        file_list.setEditable(false);
         if (update_date == true) {
             Calendar today = Calendar.getInstance();
             int YY = today.get(Calendar.YEAR);
@@ -636,7 +668,7 @@ public class main extends javax.swing.JFrame {
     private void clear_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clear_btnMouseClicked
         folder_display.setText("");
         chosen_file = null;
-        file_list.setText("");
+        clearTable();
         files_counter.setText("");
     }//GEN-LAST:event_clear_btnMouseClicked
 
@@ -644,10 +676,12 @@ public class main extends javax.swing.JFrame {
         update_date = false;
         tags_disabled = false;
         update_tags.setEnabled(true);
+        createModel();
+        clearTable();
 
         int files_found = 0;
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String date_as_string = DD_set.getText() + "-" + MM_set.getText() + "-" + YY_set.getText();
             files_after = sdf.parse(date_as_string);
 
@@ -656,13 +690,12 @@ public class main extends javax.swing.JFrame {
             for (File file : files_in_dir) {
                 String date_modified = sdf.format(file.lastModified());
                 Date file_date = sdf.parse(date_modified);
-                if (file_date.after(files_after)) {
-                    file_list.append(file.getName());
-                    file_list.append("\n");
-                    files_counter.setText("" + files_found);
+                if (file_date.compareTo(files_after) > 0) {
+                    model.addRow(new Object[]{file.getName(), date_modified, true});
                     files_found++;
                 }
             }
+            files_counter.setText("" + files_found);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -726,19 +759,8 @@ public class main extends javax.swing.JFrame {
 
     private void share_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_share_btnMouseClicked
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
-            String date_as_string = DD_set.getText() + "-" + MM_set.getText() + "-" + YY_set.getText();
-            files_after = sdf.parse(date_as_string);
+            createModel();
 
-            File[] files_in_dir = chosen_file.listFiles();
-            for (File file : files_in_dir) {
-                String date_modified = sdf.format(file.lastModified());
-                Date file_date = sdf.parse(date_modified);
-                if (file_date.after(files_after)) {
-                    String title = file.getName();
-                    autoshare(username, password, title);
-                }
-            }
             error.showMessageDialog(this, "Done Sharing", "Finished", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             error.showMessageDialog(this, "Error" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -760,6 +782,19 @@ public class main extends javax.swing.JFrame {
         about.setMinimumSize(size_of_about);
         about.setVisible(true);
     }//GEN-LAST:event_menu_aboutMouseClicked
+
+    public void createModel() {
+        model = (DefaultTableModel) file_list.getModel();
+    }
+
+    public void clearTable() {
+        int rows = model.getRowCount();
+        if (rows > 0) {
+            for (int i = 0; i < rows; i++) {
+                model.removeRow(0);
+            }
+        }
+    }
 
     public static void autoshare(String username, String password, String title) {
         tags.put("data[title]", title);
@@ -838,7 +873,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JOptionPane error;
     private javax.swing.JLabel error_lbl;
     private javax.swing.JMenuItem exit_item;
-    private javax.swing.JTextArea file_list;
+    private javax.swing.JTable file_list;
     private javax.swing.JLabel files_counter;
     private javax.swing.JLabel files_found_lbl;
     private javax.swing.JLabel folder_chosen_lbl;

@@ -334,69 +334,64 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="choose_btn" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="146" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="auth_btn" min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace pref="59" max="32767" attributes="0"/>
                       <Component id="clear_btn" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="folder_display" alignment="0" pref="348" max="32767" attributes="0"/>
+                  <Component id="folder_display" alignment="0" pref="445" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="date_modified_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="files_found_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="date_modified_lbl" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="DD_lbl" max="32767" attributes="1"/>
-                          <Component id="DD_set" linkSize="2" alignment="1" min="-2" pref="37" max="-2" attributes="1"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="MM_set" linkSize="2" min="-2" pref="29" max="-2" attributes="1"/>
-                          <Component id="MM_lbl" alignment="0" max="32767" attributes="1"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="YY_lbl" max="32767" attributes="1"/>
-                          <Component id="YY_set" alignment="0" min="-2" pref="60" max="-2" attributes="1"/>
-                      </Group>
-                  </Group>
-                  <Component id="files_counter" max="32767" attributes="1"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="DD_lbl" pref="37" max="32767" attributes="1"/>
+                  <Component id="DD_set" linkSize="2" alignment="1" min="-2" pref="37" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="auth_btn" pref="183" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="266" pref="266" max="266" attributes="0"/>
-              <Component id="update_btn" pref="183" max="32767" attributes="0"/>
-              <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-          </Group>
-          <Component id="jSeparator1" alignment="0" pref="459" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="140" max="32767" attributes="0"/>
-              <Component id="title_lbl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                      <Component id="share_btn" pref="429" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="439" max="32767" attributes="0"/>
+                  <Component id="MM_set" linkSize="2" min="-2" pref="29" max="-2" attributes="1"/>
+                  <Component id="MM_lbl" alignment="0" pref="37" max="32767" attributes="1"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="YY_lbl" pref="60" max="32767" attributes="1"/>
+                  <Component id="YY_set" alignment="0" min="-2" pref="60" max="-2" attributes="1"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="files_found_lbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="files_counter" pref="212" max="32767" attributes="1"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Component id="jSeparator1" alignment="0" pref="556" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tags_panel" pref="536" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tags_panel" pref="439" max="32767" attributes="0"/>
+              <Component id="update_btn" pref="536" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <Component id="title_lbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="share_btn" pref="526" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="526" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -415,34 +410,40 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="choose_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="clear_btn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="auth_btn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="date_modified_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="DD_set" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="MM_set" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="YY_set" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="update_btn" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="DD_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="MM_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="YY_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="files_found_lbl" min="-2" max="-2" attributes="0"/>
-                  <Component id="files_counter" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="auth_btn" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="date_modified_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DD_set" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MM_set" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="YY_set" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="files_found_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="DD_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="MM_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="YY_lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="files_counter" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="tags_panel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="194" max="-2" attributes="0"/>
+              <Component id="update_btn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="tags_panel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="215" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="share_btn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -490,21 +491,6 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clear_btnMouseClicked"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="file_list">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="date_modified_lbl">
       <Properties>
         <Property name="text" type="java.lang.String" value="Show Files After:"/>
@@ -588,59 +574,65 @@
                       <Component id="tv_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="books_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace pref="58" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="games_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="anime_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="software_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="videos_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="music_check" linkSize="3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="courses_check" linkSize="4" min="-2" pref="125" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="games_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="anime_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="music_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="software_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="videos_check" linkSize="3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="courses_check" linkSize="4" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="misc_check" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="apps_check" linkSize="4" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="update_tags" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="movie_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="games_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="software_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="apps_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="games_check" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="anime_check" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="music_check" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="apps_check" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="misc_check" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="update_tags" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="software_check" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="videos_check" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="courses_check" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="movie_check" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="tv_check" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="books_check" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tv_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="anime_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="videos_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="misc_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="books_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="music_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="courses_check" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="update_tags" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -727,5 +719,26 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="auth_btnMouseClicked"/>
       </Events>
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="file_list">
+          <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="3" rowCount="0">
+                <Column editable="false" title="File Name" type="java.lang.Object"/>
+                <Column editable="false" title="Date Modified" type="java.lang.Object"/>
+                <Column editable="true" title="Share" type="java.lang.Boolean"/>
+              </Table>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
