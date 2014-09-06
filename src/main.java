@@ -905,6 +905,7 @@ public class main extends javax.swing.JFrame {
     
     private void logs_itemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logs_itemActionPerformed
         logs_frame.setResizable(false);
+        logs.setEditable(false);
         logs_frame.setTitle("Logs");
         Dimension size_of_logs = new Dimension(400, 400);
         logs_frame.setMinimumSize(size_of_logs);
@@ -950,15 +951,11 @@ public class main extends javax.swing.JFrame {
                     "data[remme]", "on",
                     "login", "Sign In").method(Method.POST).execute();
             Map<String, String> loginCookies = res.cookies();
-            System.out.println(loginCookies.get("PHPSESSID"));
             Document doc = Jsoup.connect("http://172.16.32.222/dchub/").cookies(loginCookies).get();
             Response res2 = Jsoup.connect("http://172.16.32.222/dchub/process.php").cookie("PHPSESSID", loginCookies.get("PHPSESSID")).data(
                     tags).method(Method.POST).execute();
-            //System.out.println(res2.statusCode() + " " + res2.statusMessage());
-            logs.append("Server Response"+res2.statusCode() + " " + res2.statusMessage()+"\n");
-            logs.append("Shared "+title+"\n");
-            //System.out.println(res2.body());
-            
+            logs.append("Server Response "+res2.statusCode() + " " + res2.statusMessage()+"\n");
+            logs.append("Shared "+title+"\n");           
         } catch (Exception e) {
             System.out.println(e);
             logs.append("Server Connection Error. Please Check Login Details or LAN Connection. \n");
