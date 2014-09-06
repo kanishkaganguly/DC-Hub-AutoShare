@@ -766,31 +766,34 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_clear_btnMouseClicked
     
     private void update_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_update_btnMouseClicked
-        update_date = false;
-        tags_disabled = false;
-        update_tags.setEnabled(true);
-        createModel();
-        clearTable();
-        
-        int files_found = 0;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            String date_as_string = DD_set.getText() + "-" + MM_set.getText() + "-" + YY_set.getText();
-            files_after = sdf.parse(date_as_string);
+        if(update_btn.isEnabled()==true){
+            update_date = false;
+            tags_disabled = false;
+            update_tags.setEnabled(true);
+            createModel();
+            clearTable();
 
-            //FILE WALKER
-            File[] files_in_dir = chosen_file.listFiles();
-            for (File file : files_in_dir) {
-                String date_modified = sdf.format(file.lastModified());
-                Date file_date = sdf.parse(date_modified);
-                if (file_date.compareTo(files_after) > 0) {
-                    model.addRow(new Object[]{file.getName(), date_modified, true});
-                    files_found++;
+            int files_found = 0;
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String date_as_string = DD_set.getText() + "-" + MM_set.getText() + "-" + YY_set.getText();
+                files_after = sdf.parse(date_as_string);
+
+                //FILE WALKER
+                File[] files_in_dir = chosen_file.listFiles();
+                for (File file : files_in_dir) {
+                    String date_modified = sdf.format(file.lastModified());
+                    Date file_date = sdf.parse(date_modified);
+                    if (file_date.compareTo(files_after) > 0) {
+                        model.addRow(new Object[]{file.getName(), date_modified, true});
+                        files_found++;
+                    }
                 }
+                files_counter.setText("" + files_found);
+            } catch (Exception e) {
+                System.out.println(e);
+                logs.append("Update Failed \n");
             }
-            files_counter.setText("" + files_found);
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }//GEN-LAST:event_update_btnMouseClicked
     
@@ -851,6 +854,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_reset_btnMouseClicked
     
     private void share_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_share_btnMouseClicked
+        if(share_btn.isEnabled()==true){
         int n = confirm.showConfirmDialog(this, "Are you sure?", "Confirm Share", JOptionPane.YES_NO_OPTION);
         if (n == JOptionPane.YES_OPTION) {
             try {
@@ -864,11 +868,14 @@ public class main extends javax.swing.JFrame {
                     }
                 }
                 error.showMessageDialog(this, "Done Sharing", "Finished", JOptionPane.INFORMATION_MESSAGE);
+                logs.append("Task Complete \n");
             } catch (Exception e) {
                 error.showMessageDialog(this, "Error" + e, "Error", JOptionPane.ERROR_MESSAGE);
+                logs.append("Error \n");
             }
         } else {
             confirm.setEnabled(false);
+        }
         }
     }//GEN-LAST:event_share_btnMouseClicked
     
@@ -933,7 +940,7 @@ public class main extends javax.swing.JFrame {
         }
     }
     
-    public static void autoshare(String username, String password, String title) {
+    public void autoshare(String username, String password, String title) {
         tags.put("data[title]", title);
         tags.put("share", "Share");
         try {
@@ -948,9 +955,13 @@ public class main extends javax.swing.JFrame {
             Response res2 = Jsoup.connect("http://172.16.32.222/dchub/process.php").cookie("PHPSESSID", loginCookies.get("PHPSESSID")).data(
                     tags).method(Method.POST).execute();
             //System.out.println(res2.statusCode() + " " + res2.statusMessage());
+            logs.append("Server Response"+res2.statusCode() + " " + res2.statusMessage()+"\n");
+            logs.append("Shared "+title+"\n");
             //System.out.println(res2.body());
+            
         } catch (Exception e) {
             System.out.println(e);
+            logs.append("Server Connection Error. Please Check Login Details or LAN Connection. \n");
         }
     }
 
